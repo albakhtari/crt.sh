@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Version
-version="1.0"
+version="1.0.1"
 
 # Some colours:
 red=$'\e[1;31m'
@@ -42,7 +42,7 @@ fi
 
 help() {
     echo ""
-    echo "=========================${rarrow} ${bold}crt.sh v${version}${reset} ${larrow}==========================="
+    echo "=========================${rarrow} ${bold}crt.sh v${version}${reset} ${larrow}========================="
     echo " Pull down all subdomains of domain/organization from ${underline}https://crt.sh${reset}"
     echo ""
     echo " By: Mr. Misconception (${blue}@MisconceivedSec${reset}: GitHub, Discord, Twitter...)"
@@ -89,7 +89,9 @@ flags() {
             -u|-update)
                 if [[ "$1" || ! -d "$1" || $(ls "$1" | grep crt.sh) ]]; then
                     shift
-                    sudo $(realpath $1)/setup.sh install
+                    cd $1
+                    sudo ./setup.sh install
+                    cd - &> /dev/null
                 else
                     echo "$error \"-u|-update\" requires a non-empty argument"
                     exit 1
