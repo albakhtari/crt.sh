@@ -21,23 +21,21 @@ sudo ./setup.sh uninstall
 
 ```bash
 ~$ crt.sh -help
+Description: Pull all subdomains of domain/organization from https://crt.sh
+Usage: cert.sh [OPTIONS]...
+Version: 1.1
 
-===========================> crt.sh v1.0.1 <===========================
- Pull down all subdomains of domain/organization from https://crt.sh
+-t | -target domain.com | "organization inc"          Target domain/organization
+-o | -output <path to output file>                    Path to output file
+-h | -help                                            Standalone: Print this help message
+-u | -update <path to crt.sh local repo>              Standalone: Update crt.sh to latest version
+-v | -version                                         Standalone: Print version
 
- By: Mr. Misconception (@MisconceivedSec: GitHub, Discord, Twitter...)
-=======================================================================
+```
 
-Usage: crt.sh [OPTIONS...]
+# Examples
 
-Options:
-
-    -h -help                                            Print this help message
-    -u -update <path to crt.sh cloned repo>             Update crt.sh to latest version
-    -t -target domain.com | "organization inc"          Target domain/organization
-    -o -output <path to output file>                    Path to output file
-
-
+```bash
 # To pull all subdomains of hackerone.com and send output to /tmp/crtsh.txt:
 ~$ crt.sh -t hackerone.com -o /tmp/crtsh.txt
 
