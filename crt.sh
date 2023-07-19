@@ -87,16 +87,18 @@ flags() {
                 exit
                 ;;
             -u|-update)
-                if [[ "$1" || ! -d "$1" || $(ls "$1" | grep crt.sh) ]]; then
-                    shift
-                    cd $1
-                    sudo ./setup.sh install
-                    cd - &> /dev/null
-                else
-                    echo "$error \"-u|-update\" requires a non-empty argument"
-                    exit 1
+                if [[ "$2" ]]; then
+                    shift  
+                    if [[ -d "$1" && $(basename $1) = *"setcustomres"* ]]; then
+                        cd $1
+                        printMessage "Updating 'setcustomres'"
+                        sudo ./setup.sh install
+                        cd - &> /dev/null
+                        shift
+                    else
+                        printError "\"-u|-update\" requires a path to the local setcustomres repository"
+                    fi
                 fi
-
                 exit
                 ;;
             -t|-target)
