@@ -22,15 +22,14 @@ sudo ./setup.sh uninstall
 ```bash
 ~$ crt.sh -help
 Description: Pull all subdomains of domain/organization from https://crt.sh
-Usage: cert.sh [OPTIONS]...
-Version: 1.1
+Usage: ./crt.sh [OPTIONS]...
+Version: 1.2
 
--t | -target domain.com | "organization inc"          Target domain/organization
--o | -output <path to output file>                    Path to output file
+-t | -target <domain.com | "organization inc">        Target domain/organization
+-o | -output <path/to/output/file>                    Path to output file
+-u | -update <path/to/repo/crt.sh>                    Standalone: Update crt.sh to latest version
 -h | -help                                            Standalone: Print this help message
--u | -update <path to crt.sh local repo>              Standalone: Update crt.sh to latest version
 -v | -version                                         Standalone: Print version
-
 ```
 
 # Examples

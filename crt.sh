@@ -1,33 +1,9 @@
 #!/usr/bin/env bash
 
 # Version
-version="1.1"
+version="1.2"
 
-# Some colours:
-red=$'\e[1;31m'
-yellow=$'\e[1;93m'
-bold=$'\e[1m'
-reset=$'\e[0m'
-blue=$'\e[1;34m'
-magenta=$'\e[1;35m'
-green=$'\e[1;32m'
-cyan=$'\e[1;36m'
-white=$'\e[0m'
-underline=$'\e[21m'
-
-# Test colours
-
-# echo "
-# ${underline}underline
-# ${reset}${bold}bold${reset}
-# ${red}red
-# ${yellow}yellow
-# ${blue}blue
-# ${magenta}magenta
-# ${green}green
-# ${cyan}cyan
-# ${white}white
-# "
+source bash_formatting.sh
 
 print_error()
 {
@@ -42,17 +18,15 @@ if ! [[ $(which gron 2> /dev/null) ]]; then
 fi
 
 help() {
-    echo "${yellow}Description:${reset} Pull all subdomains of domain/organization from ${bold}https://crt.sh${reset}"
-    echo "${yellow}Usage:${reset} cert.sh [OPTIONS]..."
-    echo "${yellow}Version:${reset} $version"
+    echo "${bold}${yellow}Description:${reset} Pull all subdomains of domain/organization from ${underline}https://crt.sh${reset}"
+    echo "${bold}${yellow}Usage:${reset} $0 [OPTIONS]..."
+    echo "${bold}${yellow}Version:${reset} $version"
     echo ""
-    echo "${magenta}-t${reset} | ${magenta}-target${reset} domain.com | \"organization inc\"          Target domain/organization"
-    echo "${magenta}-o${reset} | ${magenta}-output${reset} <path to output file>                    Path to output file"
+    echo "${magenta}-t${reset} | ${magenta}-target${reset} <domain.com | ${blue}\"organization inc\"${reset}>        Target domain/organization"
+    echo "${magenta}-o${reset} | ${magenta}-output${reset} <path/to/output/file>                    Path to output file"
+    echo "${magenta}-u${reset} | ${magenta}-update${reset} <path/to/repo/crt.sh>                    ${bold}Standalone:${reset} Update crt.sh to latest version"
     echo "${magenta}-h${reset} | ${magenta}-help${reset}                                            ${bold}Standalone:${reset} Print this help message"
-    echo "${magenta}-u${reset} | ${magenta}-update${reset} <path to crt.sh local repo>              ${bold}Standalone:${reset} Update crt.sh to latest version"
     echo "${magenta}-v${reset} | ${magenta}-version${reset}                                         ${bold}Standalone:${reset} Print version"
-    echo ""
-    echo ""
 }
 
 # Get those subdomains!
