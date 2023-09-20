@@ -1,9 +1,16 @@
 #!/usr/bin/env bash
 
-# Version
-version="1.2"
+# Colours + Formatting
+red=$'\e[31m'
+yellow=$'\e[93m'
+blue=$'\e[34m'
+magenta=$'\e[35m'
+bold=$'\e[1m'
+underline=$'\e[4m'
+reset=$'\e[0m'
 
-source bash_formatting.sh
+# Version
+version="1.3"
 
 print_error()
 {
@@ -24,7 +31,7 @@ help() {
     echo ""
     echo "${magenta}-t${reset} | ${magenta}-target${reset} <domain.com | ${blue}\"organization inc\"${reset}>        Target domain/organization"
     echo "${magenta}-o${reset} | ${magenta}-output${reset} <path/to/output/file>                    Path to output file"
-    echo "${magenta}-u${reset} | ${magenta}-update${reset} <path/to/repo/crt.sh>                    ${bold}Standalone:${reset} Update crt.sh to latest version"
+    echo "${magenta}-u${reset} | ${magenta}-update${reset} <path/to/repo/crt.sh/>                    ${bold}Standalone:${reset} Update crt.sh to latest version"
     echo "${magenta}-h${reset} | ${magenta}-help${reset}                                            ${bold}Standalone:${reset} Print this help message"
     echo "${magenta}-v${reset} | ${magenta}-version${reset}                                         ${bold}Standalone:${reset} Print version"
 }
@@ -33,13 +40,8 @@ help() {
 get_subdomains() {
     target="$1"
     output="$2"
-
-    if [[ "$output" ]]; then
-        # Curl the JSON version of query results   | Make JSON grepable | Get url Parameter | Extract URL |  Remove unneeded symbols | sort & delete dupes | Print to output file
-        curl -s "https://crt.sh/?q=${target}&output=json" | gron | grep common.name | cut -d ' ' -f 3 | sed -e "s/\"//g" -e "s/;//g" | sort -u | tee "$output"
-    else
-        curl -s "https://crt.sh/?q=${target}&output=json" | gron | grep common.name | cut -d ' ' -f 3 | sed -e "s/\"//g" -e "s/;//g" | sort -u
-    fi
+    # Curl the JSON version of query results   | Make JSON grepable | Get url Parameter | Extract URL |  Remove unneeded symbols | sort & delete dupes | Print to output file (if exists)
+    curl -s "https://crt.sh/?q=${target}&output=json" | gron | grep common.name | cut -d ' ' -f 3 | sed -e "s/\"//g" -e "s/;//g" | sort -u | tee $output
 }
 
 flags() {
