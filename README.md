@@ -19,11 +19,11 @@ sudo ./setup.sh uninstall
 ~$ crt.sh -help
 Description: Pull all subdomains of domain/organization from https://crt.sh
 Usage: ./crt.sh [OPTIONS]...
-Version: 1.3
+Version: 1.4
 
--t | -target <domain.com | "organization inc">        Target domain/organization
+-t | -target <domain.com | "organization inc">        Mandatory: Target domain/organization
 -o | -output <path/to/output/file>                    Path to output file
--u | -update <path/to/repo/crt.sh/>                    Standalone: Update crt.sh to latest version
+-u | -update <path/to/repo/crt.sh/>                   Standalone: Update crt.sh to latest version
 -h | -help                                            Standalone: Print this help message
 -v | -version                                         Standalone: Print version
 ```

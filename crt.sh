@@ -28,9 +28,9 @@ help() {
     echo "${bold}${yellow}Usage:${reset} $0 [OPTIONS]..."
     echo "${bold}${yellow}Version:${reset} $version"
     echo ""
-    echo "${magenta}-t${reset} | ${magenta}-target${reset} <domain.com | ${blue}\"organization inc\"${reset}>        Target domain/organization"
+    echo "${magenta}-t${reset} | ${magenta}-target${reset} <domain.com | ${blue}\"organization inc\"${reset}>        ${bold}Mandatory:${reset} Target domain/organization"
     echo "${magenta}-o${reset} | ${magenta}-output${reset} <path/to/output/file>                    Path to output file"
-    echo "${magenta}-u${reset} | ${magenta}-update${reset} <path/to/repo/crt.sh/>                    ${bold}Standalone:${reset} Update crt.sh to latest version"
+    echo "${magenta}-u${reset} | ${magenta}-update${reset} <path/to/repo/crt.sh/>                   ${bold}Standalone:${reset} Update crt.sh to latest version"
     echo "${magenta}-h${reset} | ${magenta}-help${reset}                                            ${bold}Standalone:${reset} Print this help message"
     echo "${magenta}-v${reset} | ${magenta}-version${reset}                                         ${bold}Standalone:${reset} Print version"
 }
