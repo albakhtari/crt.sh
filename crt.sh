@@ -10,19 +10,18 @@ underline=$'\e[4m'
 reset=$'\e[0m'
 
 # Version
-version="1.3"
+version="1.4"
 
 print_error()
 {
-    echo -e "\n${red}ERROR:${reset} ${bold}$1${reset} \n"
+    echo -e "${red}ERROR:${reset} ${bold}$1${reset}"
     exit 1
 }
 
-# Make sure `gron` is installed
-if ! [[ $(which gron 2> /dev/null) ]]; then
-    print_error "'gron' is required but not installed!"
-    exit 1
-fi
+print_message() 
+{
+    echo -e "\n    ${blue}[+]${reset}${bold} $1${reset} \n"
+}
 
 help() {
     echo "${bold}${yellow}Description:${reset} Pull all subdomains of domain/organization from ${underline}https://crt.sh${reset}"
@@ -40,8 +39,8 @@ help() {
 get_subdomains() {
     target="$1"
     output="$2"
-    # Curl the JSON version of query results   | Make JSON grepable | Get url Parameter | Extract URL |  Remove unneeded symbols | sort & delete dupes | Print to output file (if exists)
-    curl -s "https://crt.sh/?q=${target}&output=json" | gron | grep common.name | cut -d ' ' -f 3 | sed -e "s/\"//g" -e "s/;//g" | sort -u | tee $output
+    # Curl the JSON version of query results | get 'name_value' parameter | sort & delete dupes | Print to output file (if exists)
+    curl -s "https://crt.sh/?q=${target}&output=json" | jq -r .[].name_value | sort -u | tee $output
 }
 
 flags() {
@@ -68,7 +67,7 @@ flags() {
                     shift  
                     if [[ -d "$1" && $(basename $1) = *"crt.sh"* ]]; then
                         cd $1
-                        printMessage "Updating 'crt.sh'"
+                        print_message "Updating 'crt.sh'"
                         sudo ./setup.sh install
                         cd - &> /dev/null
                         shift

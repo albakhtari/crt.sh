@@ -1,9 +1,5 @@
 # A tool to pull all subdomains from [crt.sh](https://crt.sh)
 
-## Requirements:
-
-- [`gron`](https://github.com/tomnomnom/gron)
-
 ## Setup:
 
 ```bash
